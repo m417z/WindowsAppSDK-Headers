@@ -76,6 +76,8 @@ namespace Microsoft
 
                 interface IDesktopWindowXamlSource;
 
+                interface IDesktopWindowXamlSource2;
+
                 interface IDesktopWindowXamlSourceFactory;
 
                 interface IDesktopWindowXamlSourceGotFocusEventArgs;
@@ -185,6 +187,15 @@ namespace Microsoft
                     [eventremove] HRESULT GotFocus([in] EventRegistrationToken token);
                     HRESULT NavigateFocus([in] Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest* request, [out] [retval] Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult** result);
                     HRESULT Initialize([in] Microsoft.UI.WindowId parentWindowId);
+                }
+
+                [contract(Microsoft.UI.Xaml.WinUIContract, 6.0)]
+                [exclusiveto(Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource)]
+                [uuid(FB02B9F1-8588-5BD3-8951-4664A675D872)]
+                interface IDesktopWindowXamlSource2 : IInspectable
+                {
+                    [propget] HRESULT ShouldConstrainPopupsToWorkArea([out] [retval] boolean* value);
+                    [propput] HRESULT ShouldConstrainPopupsToWorkArea([in] boolean value);
                 }
 
                 [contract(Microsoft.UI.Xaml.WinUIContract, 5.0)]
@@ -316,6 +327,7 @@ namespace Microsoft
                 runtimeclass DesktopWindowXamlSource
                 {
                     [default] interface Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource;
+                    [contract(Microsoft.UI.Xaml.WinUIContract, 6.0)] interface Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2;
                     [contract(Microsoft.UI.Xaml.WinUIContract, 5.0)] interface Windows.Foundation.IClosable;
                 }
 

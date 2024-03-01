@@ -11,7 +11,7 @@
 WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Hosting
 {
     struct __declspec(empty_bases) DesktopWindowXamlSource : winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource,
-        impl::require<DesktopWindowXamlSource, winrt::Windows::Foundation::IClosable>
+        impl::require<DesktopWindowXamlSource, winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2, winrt::Windows::Foundation::IClosable>
     {
         DesktopWindowXamlSource(std::nullptr_t) noexcept {}
         DesktopWindowXamlSource(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource(ptr, take_ownership_from_abi) {}

@@ -50,6 +50,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Hosting
         Down = 10,
     };
     struct IDesktopWindowXamlSource;
+    struct IDesktopWindowXamlSource2;
     struct IDesktopWindowXamlSourceFactory;
     struct IDesktopWindowXamlSourceGotFocusEventArgs;
     struct IDesktopWindowXamlSourceTakeFocusRequestedEventArgs;
@@ -76,6 +77,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Hosting
 namespace winrt::impl
 {
     template <> struct category<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceGotFocusEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceTakeFocusRequestedEventArgs>{ using type = interface_category; };
@@ -109,6 +111,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::XamlSourceFocusNavigationResult> = L"Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::XamlSourceFocusNavigationReason> = L"Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationReason";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource> = L"Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2> = L"Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource2";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceFactory> = L"Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceGotFocusEventArgs> = L"Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceGotFocusEventArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceTakeFocusRequestedEventArgs> = L"Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSourceTakeFocusRequestedEventArgs";
@@ -124,6 +127,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IXamlSourceFocusNavigationResult> = L"Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Hosting::IXamlSourceFocusNavigationResultFactory> = L"Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResultFactory";
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource>{ 0x553AF92C,0x1381,0x51D6,{ 0xBE,0xE0,0xF3,0x4B,0xEB,0x04,0x2E,0xA8 } }; // 553AF92C-1381-51D6-BEE0-F34BEB042EA8
+    template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2>{ 0xFB02B9F1,0x8588,0x5BD3,{ 0x89,0x51,0x46,0x64,0xA6,0x75,0xD8,0x72 } }; // FB02B9F1-8588-5BD3-8951-4664A675D872
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceFactory>{ 0x7D2DB617,0x14E7,0x5D49,{ 0xAE,0xEC,0xAE,0x10,0x88,0x7E,0x59,0x5D } }; // 7D2DB617-14E7-5D49-AEEC-AE10887E595D
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceGotFocusEventArgs>{ 0xCC63D863,0x2071,0x5F6B,{ 0xAE,0xF9,0xC0,0xBA,0x35,0xF3,0xB8,0xDF } }; // CC63D863-2071-5F6B-AEF9-C0BA35F3B8DF
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceTakeFocusRequestedEventArgs>{ 0x4F5A0E2C,0x4DDC,0x5C03,{ 0x93,0x9F,0x6F,0x3B,0xDA,0x56,0x03,0x63 } }; // 4F5A0E2C-4DDC-5C03-939F-6F3BDA560363
@@ -162,6 +166,14 @@ namespace winrt::impl
             virtual int32_t __stdcall remove_GotFocus(winrt::event_token) noexcept = 0;
             virtual int32_t __stdcall NavigateFocus(void*, void**) noexcept = 0;
             virtual int32_t __stdcall Initialize(struct struct_Microsoft_UI_WindowId) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ShouldConstrainPopupsToWorkArea(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_ShouldConstrainPopupsToWorkArea(bool) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceFactory>
@@ -295,6 +307,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource>
     {
         template <typename D> using type = consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource<D>;
+    };
+    template <typename D>
+    struct consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) ShouldConstrainPopupsToWorkArea() const;
+        WINRT_IMPL_AUTO(void) ShouldConstrainPopupsToWorkArea(bool value) const;
+    };
+    template <> struct consume<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2>
+    {
+        template <typename D> using type = consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2<D>;
     };
     template <typename D>
     struct consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory

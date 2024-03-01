@@ -87,6 +87,16 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource)->Initialize(impl::bind_in(parentWindowId)));
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2<D>::ShouldConstrainPopupsToWorkArea() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2)->get_ShouldConstrainPopupsToWorkArea(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSource2<D>::ShouldConstrainPopupsToWorkArea(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2)->put_ShouldConstrainPopupsToWorkArea(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Microsoft::UI::Xaml::Hosting::DesktopWindowXamlSource) consume_Microsoft_UI_Xaml_Hosting_IDesktopWindowXamlSourceFactory<D>::CreateInstance(winrt::Windows::Foundation::IInspectable const& baseInterface, winrt::Windows::Foundation::IInspectable& innerInterface) const
     {
         void* value{};
@@ -314,6 +324,26 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().Initialize(*reinterpret_cast<winrt::Microsoft::UI::WindowId const*>(&parentWindowId));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2> : produce_base<D, winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2>
+    {
+        int32_t __stdcall get_ShouldConstrainPopupsToWorkArea(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().ShouldConstrainPopupsToWorkArea());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ShouldConstrainPopupsToWorkArea(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShouldConstrainPopupsToWorkArea(value);
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -656,7 +686,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Hosting
     template <typename D, typename... Interfaces>
     struct DesktopWindowXamlSourceT :
         implements<D, winrt::Windows::Foundation::IInspectable, composing, Interfaces...>,
-        impl::require<D, winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource, winrt::Windows::Foundation::IClosable>,
+        impl::require<D, winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource, winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2, winrt::Windows::Foundation::IClosable>,
         impl::base<D, DesktopWindowXamlSource>
     {
         using composable = DesktopWindowXamlSource;
@@ -671,6 +701,7 @@ namespace std
 {
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSource2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceGotFocusEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Hosting::IDesktopWindowXamlSourceTakeFocusRequestedEventArgs> : winrt::impl::hash_base {};

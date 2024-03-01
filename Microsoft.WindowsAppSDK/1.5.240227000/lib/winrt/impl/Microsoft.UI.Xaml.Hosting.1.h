@@ -13,6 +13,13 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Hosting
         IDesktopWindowXamlSource(std::nullptr_t = nullptr) noexcept {}
         IDesktopWindowXamlSource(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IDesktopWindowXamlSource2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDesktopWindowXamlSource2>
+    {
+        IDesktopWindowXamlSource2(std::nullptr_t = nullptr) noexcept {}
+        IDesktopWindowXamlSource2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDesktopWindowXamlSourceFactory :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDesktopWindowXamlSourceFactory>
