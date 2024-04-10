@@ -3,6 +3,7 @@
 #pragma once
 #ifndef WINRT_Microsoft_Windows_Widgets_Feeds_Providers_2_H
 #define WINRT_Microsoft_Windows_Widgets_Feeds_Providers_2_H
+#include "winrt/impl/Windows.Storage.Streams.1.h"
 #include "winrt/impl/Microsoft.Windows.Widgets.Feeds.Providers.1.h"
 WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Feeds::Providers
 {
@@ -17,6 +18,11 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Feeds::Providers
         CustomQueryParametersUpdateOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::ICustomQueryParametersUpdateOptions(ptr, take_ownership_from_abi) {}
         CustomQueryParametersUpdateOptions(param::hstring const& feedProviderDefinitionId, param::hstring const& customQueryParameters);
     };
+    struct __declspec(empty_bases) FeedAnalyticsInfoReportedArgs : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedAnalyticsInfoReportedArgs
+    {
+        FeedAnalyticsInfoReportedArgs(std::nullptr_t) noexcept {}
+        FeedAnalyticsInfoReportedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedAnalyticsInfoReportedArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) FeedDisabledArgs : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedDisabledArgs
     {
         FeedDisabledArgs(std::nullptr_t) noexcept {}
@@ -27,11 +33,22 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Feeds::Providers
         FeedEnabledArgs(std::nullptr_t) noexcept {}
         FeedEnabledArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedEnabledArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) FeedManager : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedManager
+    struct __declspec(empty_bases) FeedErrorInfoReportedArgs : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedErrorInfoReportedArgs
+    {
+        FeedErrorInfoReportedArgs(std::nullptr_t) noexcept {}
+        FeedErrorInfoReportedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedErrorInfoReportedArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FeedManager : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedManager,
+        impl::require<FeedManager, winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedManager2>
     {
         FeedManager(std::nullptr_t) noexcept {}
         FeedManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedManager(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
+    };
+    struct __declspec(empty_bases) FeedMessageReceivedArgs : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedMessageReceivedArgs
+    {
+        FeedMessageReceivedArgs(std::nullptr_t) noexcept {}
+        FeedMessageReceivedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedMessageReceivedArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) FeedProviderDisabledArgs : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedProviderDisabledArgs
     {
@@ -47,6 +64,22 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Feeds::Providers
     {
         FeedProviderInfo(std::nullptr_t) noexcept {}
         FeedProviderInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedProviderInfo(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FeedResourceRequest : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedResourceRequest
+    {
+        FeedResourceRequest(std::nullptr_t) noexcept {}
+        FeedResourceRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedResourceRequest(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FeedResourceRequestedArgs : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedResourceRequestedArgs
+    {
+        FeedResourceRequestedArgs(std::nullptr_t) noexcept {}
+        FeedResourceRequestedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedResourceRequestedArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FeedResourceResponse : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedResourceResponse
+    {
+        FeedResourceResponse(std::nullptr_t) noexcept {}
+        FeedResourceResponse(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Feeds::Providers::IFeedResourceResponse(ptr, take_ownership_from_abi) {}
+        FeedResourceResponse(winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& content, param::hstring const& reasonPhrase, int32_t statusCode);
     };
 }
 #endif

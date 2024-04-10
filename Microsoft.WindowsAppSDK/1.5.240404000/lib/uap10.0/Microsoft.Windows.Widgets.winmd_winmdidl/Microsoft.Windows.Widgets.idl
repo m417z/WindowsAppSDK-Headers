@@ -31,7 +31,7 @@ namespace Microsoft
     {
         namespace Widgets
         {
-            [contractversion(4.0)]
+            [contractversion(5.0)]
             apicontract WidgetContract
             {
             }
