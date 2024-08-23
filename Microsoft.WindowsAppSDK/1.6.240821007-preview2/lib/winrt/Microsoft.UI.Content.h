@@ -330,10 +330,10 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Content::IContentIslandStateChangedEventArgs)->get_DidRasterizationScaleChange(&value));
         return value;
     }
-    template <typename D> WINRT_IMPL_AUTO(winrt::Microsoft::UI::Content::ContentIsland) consume_Microsoft_UI_Content_IContentIslandStatics<D>::Create(winrt::Microsoft::UI::Composition::Visual const& root) const
+    template <typename D> WINRT_IMPL_AUTO(winrt::Microsoft::UI::Content::ContentIsland) consume_Microsoft_UI_Content_IContentIslandStatics<D>::Create(winrt::Microsoft::UI::Composition::Visual const& Root) const
     {
         void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Content::IContentIslandStatics)->Create(*(void**)(&root), &result));
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Content::IContentIslandStatics)->Create(*(void**)(&Root), &result));
         return winrt::Microsoft::UI::Content::ContentIsland{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(com_array<winrt::Microsoft::UI::Content::ContentIsland>) consume_Microsoft_UI_Content_IContentIslandStatics<D>::FindAllForCompositor(winrt::Microsoft::UI::Composition::Compositor const& compositor) const
@@ -1211,11 +1211,11 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Microsoft::UI::Content::IContentIslandStatics> : produce_base<D, winrt::Microsoft::UI::Content::IContentIslandStatics>
     {
-        int32_t __stdcall Create(void* root, void** result) noexcept final try
+        int32_t __stdcall Create(void* Root, void** result) noexcept final try
         {
             clear_abi(result);
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Microsoft::UI::Content::ContentIsland>(this->shim().Create(*reinterpret_cast<winrt::Microsoft::UI::Composition::Visual const*>(&root)));
+            *result = detach_from<winrt::Microsoft::UI::Content::ContentIsland>(this->shim().Create(*reinterpret_cast<winrt::Microsoft::UI::Composition::Visual const*>(&Root)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1869,9 +1869,9 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Content
     {
         return impl::call_factory<ContentCoordinateConverter, IContentCoordinateConverterStatics>([&](IContentCoordinateConverterStatics const& f) { return f.CreateForWindowId(windowId); });
     }
-    inline auto ContentIsland::Create(winrt::Microsoft::UI::Composition::Visual const& root)
+    inline auto ContentIsland::Create(winrt::Microsoft::UI::Composition::Visual const& Root)
     {
-        return impl::call_factory<ContentIsland, IContentIslandStatics>([&](IContentIslandStatics const& f) { return f.Create(root); });
+        return impl::call_factory<ContentIsland, IContentIslandStatics>([&](IContentIslandStatics const& f) { return f.Create(Root); });
     }
     inline auto ContentIsland::FindAllForCompositor(winrt::Microsoft::UI::Composition::Compositor const& compositor)
     {

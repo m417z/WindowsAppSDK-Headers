@@ -403,7 +403,7 @@ namespace Microsoft
             [uuid(7B9EB7CC-8C43-5E0A-AB23-AB48628FD223)]
             interface IContentIslandStatics : IInspectable
             {
-                HRESULT Create([in] Microsoft.UI.Composition.Visual* root, [out] [retval] Microsoft.UI.Content.ContentIsland** result);
+                HRESULT Create([in] Microsoft.UI.Composition.Visual* Root, [out] [retval] Microsoft.UI.Content.ContentIsland** result);
                 HRESULT FindAllForCompositor([in] Microsoft.UI.Composition.Compositor* compositor, [out] UINT32* __resultSize, [out] [retval] [size_is(, *__resultSize)] Microsoft.UI.Content.ContentIsland*** result);
                 HRESULT FindAllForCurrentThread([out] UINT32* __resultSize, [out] [retval] [size_is(, *__resultSize)] Microsoft.UI.Content.ContentIsland*** result);
                 HRESULT GetByVisual([in] Microsoft.UI.Composition.Visual* child, [out] [retval] Microsoft.UI.Content.ContentIsland** result);

@@ -35,7 +35,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Content
     {
         ContentIsland(std::nullptr_t) noexcept {}
         ContentIsland(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::UI::Content::IContentIsland(ptr, take_ownership_from_abi) {}
-        static auto Create(winrt::Microsoft::UI::Composition::Visual const& root);
+        static auto Create(winrt::Microsoft::UI::Composition::Visual const& Root);
         static auto FindAllForCompositor(winrt::Microsoft::UI::Composition::Compositor const& compositor);
         static auto FindAllForCurrentThread();
         static auto GetByVisual(winrt::Microsoft::UI::Composition::Visual const& child);

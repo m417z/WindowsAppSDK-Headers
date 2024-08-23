@@ -696,7 +696,7 @@ namespace winrt::impl
     template <typename D>
     struct consume_Microsoft_UI_Content_IContentIslandStatics
     {
-        WINRT_IMPL_AUTO(winrt::Microsoft::UI::Content::ContentIsland) Create(winrt::Microsoft::UI::Composition::Visual const& root) const;
+        WINRT_IMPL_AUTO(winrt::Microsoft::UI::Content::ContentIsland) Create(winrt::Microsoft::UI::Composition::Visual const& Root) const;
         WINRT_IMPL_AUTO(com_array<winrt::Microsoft::UI::Content::ContentIsland>) FindAllForCompositor(winrt::Microsoft::UI::Composition::Compositor const& compositor) const;
         WINRT_IMPL_AUTO(com_array<winrt::Microsoft::UI::Content::ContentIsland>) FindAllForCurrentThread() const;
         WINRT_IMPL_AUTO(winrt::Microsoft::UI::Content::ContentIsland) GetByVisual(winrt::Microsoft::UI::Composition::Visual const& child) const;

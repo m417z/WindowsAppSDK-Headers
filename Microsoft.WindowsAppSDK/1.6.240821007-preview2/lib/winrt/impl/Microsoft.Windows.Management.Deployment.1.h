@@ -48,6 +48,13 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Management::Deployment
         IPackageDeploymentManagerStatics(std::nullptr_t = nullptr) noexcept {}
         IPackageDeploymentManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IPackageDeploymentManagerStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPackageDeploymentManagerStatics2>
+    {
+        IPackageDeploymentManagerStatics2(std::nullptr_t = nullptr) noexcept {}
+        IPackageDeploymentManagerStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPackageDeploymentResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPackageDeploymentResult>

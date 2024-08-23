@@ -403,16 +403,16 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager)->DeprovisionPackageSetAsync(*(void**)(&packageSet), &operation));
         return winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentResult, winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentProgress>{ operation, take_ownership_from_abi };
     }
-    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManager<D>::IsPackageRegistrationPending(param::hstring const& packageFullName) const
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManager<D>::IsPackageRegistrationPending(param::hstring const& packageFamilyName) const
     {
         bool result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager)->IsPackageRegistrationPending(*(void**)(&packageFullName), &result));
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager)->IsPackageRegistrationPending(*(void**)(&packageFamilyName), &result));
         return result;
     }
-    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManager<D>::IsPackageRegistrationPendingForUser(param::hstring const& userSecurityId, param::hstring const& packageFullName) const
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManager<D>::IsPackageRegistrationPendingForUser(param::hstring const& userSecurityId, param::hstring const& packageFamilyName) const
     {
         bool result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager)->IsPackageRegistrationPendingForUser(*(void**)(&userSecurityId), *(void**)(&packageFullName), &result));
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager)->IsPackageRegistrationPendingForUser(*(void**)(&userSecurityId), *(void**)(&packageFamilyName), &result));
         return result;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Management::Deployment::PackageReadyOrNewerAvailableStatus) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManager2<D>::IsPackageReadyOrNewerAvailable(param::hstring const& package) const
@@ -457,10 +457,10 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics)->GetDefault(&result));
         return winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentManager{ result, take_ownership_from_abi };
     }
-    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManagerStatics<D>::IsPackageDeploymentFeatureSupported(winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentFeature const& feature) const
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentManagerStatics2<D>::IsPackageDeploymentFeatureSupported(winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentFeature const& feature) const
     {
         bool result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics)->IsPackageDeploymentFeatureSupported(static_cast<int32_t>(feature), &result));
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics2)->IsPackageDeploymentFeatureSupported(static_cast<int32_t>(feature), &result));
         return result;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentStatus) consume_Microsoft_Windows_Management_Deployment_IPackageDeploymentResult<D>::Status() const
@@ -1570,17 +1570,17 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall IsPackageRegistrationPending(void* packageFullName, bool* result) noexcept final try
+        int32_t __stdcall IsPackageRegistrationPending(void* packageFamilyName, bool* result) noexcept final try
         {
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<bool>(this->shim().IsPackageRegistrationPending(*reinterpret_cast<hstring const*>(&packageFullName)));
+            *result = detach_from<bool>(this->shim().IsPackageRegistrationPending(*reinterpret_cast<hstring const*>(&packageFamilyName)));
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall IsPackageRegistrationPendingForUser(void* userSecurityId, void* packageFullName, bool* result) noexcept final try
+        int32_t __stdcall IsPackageRegistrationPendingForUser(void* userSecurityId, void* packageFamilyName, bool* result) noexcept final try
         {
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<bool>(this->shim().IsPackageRegistrationPendingForUser(*reinterpret_cast<hstring const*>(&userSecurityId), *reinterpret_cast<hstring const*>(&packageFullName)));
+            *result = detach_from<bool>(this->shim().IsPackageRegistrationPendingForUser(*reinterpret_cast<hstring const*>(&userSecurityId), *reinterpret_cast<hstring const*>(&packageFamilyName)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1646,6 +1646,12 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics2> : produce_base<D, winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics2>
+    {
         int32_t __stdcall IsPackageDeploymentFeatureSupported(int32_t feature, bool* result) noexcept final try
         {
             typename D::abi_guard guard(this->shim());
@@ -2518,7 +2524,7 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Management::Deployment
     }
     inline auto PackageDeploymentManager::IsPackageDeploymentFeatureSupported(winrt::Microsoft::Windows::Management::Deployment::PackageDeploymentFeature const& feature)
     {
-        return impl::call_factory<PackageDeploymentManager, IPackageDeploymentManagerStatics>([&](IPackageDeploymentManagerStatics const& f) { return f.IsPackageDeploymentFeatureSupported(feature); });
+        return impl::call_factory<PackageDeploymentManager, IPackageDeploymentManagerStatics2>([&](IPackageDeploymentManagerStatics2 const& f) { return f.IsPackageDeploymentFeatureSupported(feature); });
     }
     inline auto PackageRuntimeManager::GetDefault()
     {
@@ -2578,6 +2584,7 @@ namespace std
     template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManager2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentManagerStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageDeploymentResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageRuntimeManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Management::Deployment::IPackageRuntimeManagerStatics> : winrt::impl::hash_base {};

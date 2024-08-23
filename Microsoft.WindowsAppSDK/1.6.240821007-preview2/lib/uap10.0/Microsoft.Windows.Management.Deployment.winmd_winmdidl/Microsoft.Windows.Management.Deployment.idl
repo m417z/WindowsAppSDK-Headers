@@ -59,6 +59,8 @@ namespace Microsoft
 
                 interface IPackageDeploymentManagerStatics;
 
+                interface IPackageDeploymentManagerStatics2;
+
                 interface IPackageDeploymentResult;
 
                 interface IPackageRuntimeManager;
@@ -321,8 +323,8 @@ namespace Microsoft
                     HRESULT DeprovisionPackageAsync([in] HSTRING package, [out] [retval] Windows.Foundation.IAsyncOperationWithProgress<Microsoft.Windows.Management.Deployment.PackageDeploymentResult*, Microsoft.Windows.Management.Deployment.PackageDeploymentProgress>** operation);
                     HRESULT DeprovisionPackageByUriAsync([in] Windows.Foundation.Uri* packageUri, [out] [retval] Windows.Foundation.IAsyncOperationWithProgress<Microsoft.Windows.Management.Deployment.PackageDeploymentResult*, Microsoft.Windows.Management.Deployment.PackageDeploymentProgress>** operation);
                     HRESULT DeprovisionPackageSetAsync([in] Microsoft.Windows.Management.Deployment.PackageSet* packageSet, [out] [retval] Windows.Foundation.IAsyncOperationWithProgress<Microsoft.Windows.Management.Deployment.PackageDeploymentResult*, Microsoft.Windows.Management.Deployment.PackageDeploymentProgress>** operation);
-                    HRESULT IsPackageRegistrationPending([in] HSTRING packageFullName, [out] [retval] boolean* result);
-                    HRESULT IsPackageRegistrationPendingForUser([in] HSTRING userSecurityId, [in] HSTRING packageFullName, [out] [retval] boolean* result);
+                    HRESULT IsPackageRegistrationPending([in] HSTRING packageFamilyName, [out] [retval] boolean* result);
+                    HRESULT IsPackageRegistrationPendingForUser([in] HSTRING userSecurityId, [in] HSTRING packageFamilyName, [out] [retval] boolean* result);
                 }
 
                 [contract(Microsoft.Windows.Management.Deployment.PackageDeploymentContract, 2.0)]
@@ -340,10 +342,17 @@ namespace Microsoft
 
                 [contract(Microsoft.Windows.Management.Deployment.PackageDeploymentContract, 1.0)]
                 [exclusiveto(Microsoft.Windows.Management.Deployment.PackageDeploymentManager)]
-                [uuid(9B5A28F8-FFA9-57D4-9A8D-4752A3846D73)]
+                [uuid(DBDA4AC6-CA28-59B8-9FC6-DBFB5765F1C2)]
                 interface IPackageDeploymentManagerStatics : IInspectable
                 {
                     HRESULT GetDefault([out] [retval] Microsoft.Windows.Management.Deployment.PackageDeploymentManager** result);
+                }
+
+                [contract(Microsoft.Windows.Management.Deployment.PackageDeploymentContract, 2.0)]
+                [exclusiveto(Microsoft.Windows.Management.Deployment.PackageDeploymentManager)]
+                [uuid(0EC31486-00B5-5937-8CD4-759260FDC4A2)]
+                interface IPackageDeploymentManagerStatics2 : IInspectable
+                {
                     HRESULT IsPackageDeploymentFeatureSupported([in] Microsoft.Windows.Management.Deployment.PackageDeploymentFeature feature, [out] [retval] boolean* result);
                 }
 
@@ -564,6 +573,7 @@ namespace Microsoft
                 [contract(Microsoft.Windows.Management.Deployment.PackageDeploymentContract, 1.0)]
                 [marshaling_behavior(agile)]
                 [static(Microsoft.Windows.Management.Deployment.IPackageDeploymentManagerStatics, Microsoft.Windows.Management.Deployment.PackageDeploymentContract, 1.0)]
+                [static(Microsoft.Windows.Management.Deployment.IPackageDeploymentManagerStatics2, Microsoft.Windows.Management.Deployment.PackageDeploymentContract, 2.0)]
                 [threading(both)]
                 runtimeclass PackageDeploymentManager
                 {
