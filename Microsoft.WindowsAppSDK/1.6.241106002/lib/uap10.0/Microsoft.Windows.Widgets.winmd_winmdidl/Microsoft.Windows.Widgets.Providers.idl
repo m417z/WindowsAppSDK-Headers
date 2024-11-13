@@ -8,6 +8,7 @@ import "EventToken.idl";
 import "windowscontracts.idl";
 import "Windows.Foundation.idl";
 import "Microsoft.Windows.Widgets.idl";
+import "Windows.Storage.Streams.idl";
 
 // Forward Declare
 namespace Microsoft
@@ -27,6 +28,18 @@ namespace Windows
     namespace Foundation
     {
         typedef struct DateTime DateTime;
+
+        runtimeclass Deferral;
+    }
+}
+namespace Windows
+{
+    namespace Storage
+    {
+        namespace Streams
+        {
+            interface IRandomAccessStreamReference;
+        }
     }
 }
 namespace Microsoft
@@ -53,7 +66,11 @@ namespace Microsoft
 
                 interface IWidgetManager;
 
+                interface IWidgetManager2;
+
                 interface IWidgetManagerStatics;
+
+                interface IWidgetMessageReceivedArgs;
 
                 interface IWidgetProvider;
 
@@ -62,6 +79,18 @@ namespace Microsoft
                 interface IWidgetProviderAnalytics;
 
                 interface IWidgetProviderErrors;
+
+                interface IWidgetProviderMessage;
+
+                interface IWidgetResourceProvider;
+
+                interface IWidgetResourceRequest;
+
+                interface IWidgetResourceRequestedArgs;
+
+                interface IWidgetResourceResponse;
+
+                interface IWidgetResourceResponseFactory;
 
                 interface IWidgetUpdateRequestOptions;
 
@@ -84,6 +113,14 @@ namespace Microsoft
                 runtimeclass WidgetInfo;
 
                 runtimeclass WidgetManager;
+
+                runtimeclass WidgetMessageReceivedArgs;
+
+                runtimeclass WidgetResourceRequest;
+
+                runtimeclass WidgetResourceRequestedArgs;
+
+                runtimeclass WidgetResourceResponse;
 
                 runtimeclass WidgetUpdateRequestOptions;
             }
@@ -182,12 +219,28 @@ namespace Microsoft
                     HRESULT DeleteWidget([in] HSTRING widgetId);
                 }
 
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [uuid(55C65A27-8845-406C-9EE1-1E79F0556BEF)]
+                interface IWidgetManager2 : IInspectable
+                {
+                    HRESULT SendMessageToContent([in] HSTRING widgetId, [in] HSTRING message);
+                }
+
                 [contract(Microsoft.Windows.Widgets.WidgetContract, 1.0)]
                 [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetManager)]
                 [uuid(7F233B06-28E5-5E2B-8C04-A4FA747C28C7)]
                 interface IWidgetManagerStatics : IInspectable
                 {
                     HRESULT GetDefault([out] [retval] Microsoft.Windows.Widgets.Providers.WidgetManager** result);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetMessageReceivedArgs)]
+                [uuid(2261CB2B-C741-5F96-9ADB-FB3A7667BCB6)]
+                interface IWidgetMessageReceivedArgs : IInspectable
+                {
+                    [propget] HRESULT WidgetContext([out] [retval] Microsoft.Windows.Widgets.Providers.WidgetContext** value);
+                    [propget] HRESULT Message([out] [retval] HSTRING* value);
                 }
 
                 [contract(Microsoft.Windows.Widgets.WidgetContract, 1.0)]
@@ -221,6 +274,64 @@ namespace Microsoft
                 interface IWidgetProviderErrors : IInspectable
                 {
                     HRESULT OnErrorInfoReported([in] Microsoft.Windows.Widgets.Providers.WidgetErrorInfoReportedArgs* args);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [uuid(EA4DC186-9E24-4B35-A5EF-A9F5DF72D6AC)]
+                interface IWidgetProviderMessage : IInspectable
+                {
+                    HRESULT OnMessageReceived([in] Microsoft.Windows.Widgets.Providers.WidgetMessageReceivedArgs* args);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [uuid(DCF328C0-012C-40F5-BB28-3A1C714D027D)]
+                interface IWidgetResourceProvider : IInspectable
+                {
+                    HRESULT OnResourceRequested([in] Microsoft.Windows.Widgets.Providers.WidgetResourceRequestedArgs* args);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetResourceRequest)]
+                [uuid(113D249F-82D9-57CB-8CEA-9A5291F2FE22)]
+                interface IWidgetResourceRequest : IInspectable
+                {
+                    [propget] HRESULT Uri([out] [retval] HSTRING* value);
+                    [propget] HRESULT Method([out] [retval] HSTRING* value);
+                    [propput] HRESULT Method([in] HSTRING value);
+                    [propget] HRESULT Content([out] [retval] Windows.Storage.Streams.IRandomAccessStreamReference** value);
+                    [propput] HRESULT Content([in] Windows.Storage.Streams.IRandomAccessStreamReference* value);
+                    [propget] HRESULT Headers([out] [retval] Windows.Foundation.Collections.IMap<HSTRING, HSTRING>** value);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetResourceRequestedArgs)]
+                [uuid(2BB30F4D-0166-58E3-AAF6-31B2AE970BCD)]
+                interface IWidgetResourceRequestedArgs : IInspectable
+                {
+                    [propget] HRESULT WidgetContext([out] [retval] Microsoft.Windows.Widgets.Providers.WidgetContext** value);
+                    [propget] HRESULT Request([out] [retval] Microsoft.Windows.Widgets.Providers.WidgetResourceRequest** value);
+                    [propget] HRESULT Response([out] [retval] Microsoft.Windows.Widgets.Providers.WidgetResourceResponse** value);
+                    [propput] HRESULT Response([in] Microsoft.Windows.Widgets.Providers.WidgetResourceResponse* value);
+                    HRESULT GetDeferral([out] [retval] Windows.Foundation.Deferral** result);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetResourceResponse)]
+                [uuid(03A2D32C-2E9E-54A3-B084-1479D5060F80)]
+                interface IWidgetResourceResponse : IInspectable
+                {
+                    [propget] HRESULT Content([out] [retval] Windows.Storage.Streams.IRandomAccessStreamReference** value);
+                    [propget] HRESULT Headers([out] [retval] Windows.Foundation.Collections.IMap<HSTRING, HSTRING>** value);
+                    [propget] HRESULT ReasonPhrase([out] [retval] HSTRING* value);
+                    [propget] HRESULT StatusCode([out] [retval] INT32* value);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetResourceResponse)]
+                [uuid(08881EF1-A78A-5804-B070-9153A8657F85)]
+                interface IWidgetResourceResponseFactory : IInspectable
+                {
+                    HRESULT CreateInstance([in] Windows.Storage.Streams.IRandomAccessStreamReference* content, [in] HSTRING reasonPhrase, [in] INT32 statusCode, [out] [retval] Microsoft.Windows.Widgets.Providers.WidgetResourceResponse** value);
                 }
 
                 [contract(Microsoft.Windows.Widgets.WidgetContract, 1.0)]
@@ -309,6 +420,37 @@ namespace Microsoft
                 runtimeclass WidgetManager
                 {
                     [default] interface Microsoft.Windows.Widgets.Providers.IWidgetManager;
+                    [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)] interface Microsoft.Windows.Widgets.Providers.IWidgetManager2;
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [marshaling_behavior(agile)]
+                runtimeclass WidgetMessageReceivedArgs
+                {
+                    [default] interface Microsoft.Windows.Widgets.Providers.IWidgetMessageReceivedArgs;
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [marshaling_behavior(agile)]
+                runtimeclass WidgetResourceRequest
+                {
+                    [default] interface Microsoft.Windows.Widgets.Providers.IWidgetResourceRequest;
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [marshaling_behavior(agile)]
+                runtimeclass WidgetResourceRequestedArgs
+                {
+                    [default] interface Microsoft.Windows.Widgets.Providers.IWidgetResourceRequestedArgs;
+                }
+
+                [activatable(Microsoft.Windows.Widgets.Providers.IWidgetResourceResponseFactory, Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 6.0)]
+                [marshaling_behavior(agile)]
+                [threading(both)]
+                runtimeclass WidgetResourceResponse
+                {
+                    [default] interface Microsoft.Windows.Widgets.Providers.IWidgetResourceResponse;
                 }
 
                 [activatable(Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptionsFactory, Microsoft.Windows.Widgets.WidgetContract, 1.0)]

@@ -3,6 +3,7 @@
 #pragma once
 #ifndef WINRT_Microsoft_Windows_Widgets_Providers_2_H
 #define WINRT_Microsoft_Windows_Widgets_Providers_2_H
+#include "winrt/impl/Windows.Storage.Streams.1.h"
 #include "winrt/impl/Microsoft.Windows.Widgets.Providers.1.h"
 WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
 {
@@ -41,11 +42,33 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
         WidgetInfo(std::nullptr_t) noexcept {}
         WidgetInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) WidgetManager : winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager
+    struct __declspec(empty_bases) WidgetManager : winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager,
+        impl::require<WidgetManager, winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2>
     {
         WidgetManager(std::nullptr_t) noexcept {}
         WidgetManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
+    };
+    struct __declspec(empty_bases) WidgetMessageReceivedArgs : winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs
+    {
+        WidgetMessageReceivedArgs(std::nullptr_t) noexcept {}
+        WidgetMessageReceivedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WidgetResourceRequest : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest
+    {
+        WidgetResourceRequest(std::nullptr_t) noexcept {}
+        WidgetResourceRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WidgetResourceRequestedArgs : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs
+    {
+        WidgetResourceRequestedArgs(std::nullptr_t) noexcept {}
+        WidgetResourceRequestedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WidgetResourceResponse : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse
+    {
+        WidgetResourceResponse(std::nullptr_t) noexcept {}
+        WidgetResourceResponse(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse(ptr, take_ownership_from_abi) {}
+        WidgetResourceResponse(winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& content, param::hstring const& reasonPhrase, int32_t statusCode);
     };
     struct __declspec(empty_bases) WidgetUpdateRequestOptions : winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions
     {
