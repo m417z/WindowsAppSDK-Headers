@@ -9,15 +9,6 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets
 }
 WINRT_EXPORT namespace winrt::Windows::Foundation
 {
-    struct Deferral;
-}
-WINRT_EXPORT namespace winrt::Windows::Foundation::Collections
-{
-    template <typename K, typename V> struct __declspec(empty_bases) IMap;
-}
-WINRT_EXPORT namespace winrt::Windows::Storage::Streams
-{
-    struct IRandomAccessStreamReference;
 }
 WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
 {
@@ -29,19 +20,11 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
     struct IWidgetErrorInfoReportedArgs;
     struct IWidgetInfo;
     struct IWidgetManager;
-    struct IWidgetManager2;
     struct IWidgetManagerStatics;
-    struct IWidgetMessageReceivedArgs;
     struct IWidgetProvider;
     struct IWidgetProvider2;
     struct IWidgetProviderAnalytics;
     struct IWidgetProviderErrors;
-    struct IWidgetProviderMessage;
-    struct IWidgetResourceProvider;
-    struct IWidgetResourceRequest;
-    struct IWidgetResourceRequestedArgs;
-    struct IWidgetResourceResponse;
-    struct IWidgetResourceResponseFactory;
     struct IWidgetUpdateRequestOptions;
     struct IWidgetUpdateRequestOptionsFactory;
     struct IWidgetUpdateRequestOptionsStatics;
@@ -53,10 +36,6 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
     struct WidgetErrorInfoReportedArgs;
     struct WidgetInfo;
     struct WidgetManager;
-    struct WidgetMessageReceivedArgs;
-    struct WidgetResourceRequest;
-    struct WidgetResourceRequestedArgs;
-    struct WidgetResourceResponse;
     struct WidgetUpdateRequestOptions;
 }
 namespace winrt::impl
@@ -69,19 +48,11 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetErrorInfoReportedArgs>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManagerStatics>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider2>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderAnalytics>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderErrors>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderMessage>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceProvider>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse>{ using type = interface_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponseFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsStatics>{ using type = interface_category; };
@@ -93,10 +64,6 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetErrorInfoReportedArgs>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetInfo>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetManager>{ using type = class_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetMessageReceivedArgs>{ using type = class_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequest>{ using type = class_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequestedArgs>{ using type = class_category; };
-    template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceResponse>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::Windows::Widgets::Providers::WidgetUpdateRequestOptions>{ using type = class_category; };
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetActionInvokedArgs> = L"Microsoft.Windows.Widgets.Providers.WidgetActionInvokedArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetAnalyticsInfoReportedArgs> = L"Microsoft.Windows.Widgets.Providers.WidgetAnalyticsInfoReportedArgs";
@@ -106,10 +73,6 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetErrorInfoReportedArgs> = L"Microsoft.Windows.Widgets.Providers.WidgetErrorInfoReportedArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetInfo> = L"Microsoft.Windows.Widgets.Providers.WidgetInfo";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetManager> = L"Microsoft.Windows.Widgets.Providers.WidgetManager";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetMessageReceivedArgs> = L"Microsoft.Windows.Widgets.Providers.WidgetMessageReceivedArgs";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequest> = L"Microsoft.Windows.Widgets.Providers.WidgetResourceRequest";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequestedArgs> = L"Microsoft.Windows.Widgets.Providers.WidgetResourceRequestedArgs";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceResponse> = L"Microsoft.Windows.Widgets.Providers.WidgetResourceResponse";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::WidgetUpdateRequestOptions> = L"Microsoft.Windows.Widgets.Providers.WidgetUpdateRequestOptions";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetActionInvokedArgs> = L"Microsoft.Windows.Widgets.Providers.IWidgetActionInvokedArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetAnalyticsInfoReportedArgs> = L"Microsoft.Windows.Widgets.Providers.IWidgetAnalyticsInfoReportedArgs";
@@ -119,19 +82,11 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetErrorInfoReportedArgs> = L"Microsoft.Windows.Widgets.Providers.IWidgetErrorInfoReportedArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo> = L"Microsoft.Windows.Widgets.Providers.IWidgetInfo";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager> = L"Microsoft.Windows.Widgets.Providers.IWidgetManager";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2> = L"Microsoft.Windows.Widgets.Providers.IWidgetManager2";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManagerStatics> = L"Microsoft.Windows.Widgets.Providers.IWidgetManagerStatics";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs> = L"Microsoft.Windows.Widgets.Providers.IWidgetMessageReceivedArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider> = L"Microsoft.Windows.Widgets.Providers.IWidgetProvider";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider2> = L"Microsoft.Windows.Widgets.Providers.IWidgetProvider2";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderAnalytics> = L"Microsoft.Windows.Widgets.Providers.IWidgetProviderAnalytics";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderErrors> = L"Microsoft.Windows.Widgets.Providers.IWidgetProviderErrors";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderMessage> = L"Microsoft.Windows.Widgets.Providers.IWidgetProviderMessage";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceProvider> = L"Microsoft.Windows.Widgets.Providers.IWidgetResourceProvider";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest> = L"Microsoft.Windows.Widgets.Providers.IWidgetResourceRequest";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs> = L"Microsoft.Windows.Widgets.Providers.IWidgetResourceRequestedArgs";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse> = L"Microsoft.Windows.Widgets.Providers.IWidgetResourceResponse";
-    template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponseFactory> = L"Microsoft.Windows.Widgets.Providers.IWidgetResourceResponseFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions> = L"Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptions";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsFactory> = L"Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptionsFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsStatics> = L"Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptionsStatics";
@@ -143,19 +98,11 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetErrorInfoReportedArgs>{ 0x30EFA627,0xB21F,0x55D5,{ 0xB9,0x1A,0xB2,0x3B,0x4A,0xA1,0x36,0x45 } }; // 30EFA627-B21F-55D5-B91A-B23B4AA13645
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo>{ 0xCEA11F42,0xA020,0x5DB5,{ 0x89,0xE2,0xB7,0xDE,0xCE,0x4A,0xE5,0xCB } }; // CEA11F42-A020-5DB5-89E2-B7DECE4AE5CB
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager>{ 0x71CB10C0,0x671E,0x48E3,{ 0xB9,0x95,0x20,0x79,0x40,0x39,0x71,0x23 } }; // 71CB10C0-671E-48E3-B995-207940397123
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2>{ 0x55C65A27,0x8845,0x406C,{ 0x9E,0xE1,0x1E,0x79,0xF0,0x55,0x6B,0xEF } }; // 55C65A27-8845-406C-9EE1-1E79F0556BEF
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManagerStatics>{ 0x7F233B06,0x28E5,0x5E2B,{ 0x8C,0x04,0xA4,0xFA,0x74,0x7C,0x28,0xC7 } }; // 7F233B06-28E5-5E2B-8C04-A4FA747C28C7
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs>{ 0x2261CB2B,0xC741,0x5F96,{ 0x9A,0xDB,0xFB,0x3A,0x76,0x67,0xBC,0xB6 } }; // 2261CB2B-C741-5F96-9ADB-FB3A7667BCB6
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider>{ 0x5C5774CC,0x72A0,0x452D,{ 0xB9,0xED,0x07,0x5C,0x0D,0xD2,0x5E,0xED } }; // 5C5774CC-72A0-452D-B9ED-075C0DD25EED
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider2>{ 0x38C3A963,0xDD93,0x479D,{ 0x92,0x76,0x04,0xBF,0x84,0xEE,0x18,0x16 } }; // 38C3A963-DD93-479D-9276-04BF84EE1816
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderAnalytics>{ 0x661985A5,0xD187,0x482D,{ 0x9E,0xEF,0x6F,0xDA,0x05,0xD2,0x18,0x45 } }; // 661985A5-D187-482D-9EEF-6FDA05D21845
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderErrors>{ 0x90C1B5F0,0x0D3A,0x4AC6,{ 0xAB,0xB7,0xC9,0x7B,0x36,0x7B,0x8F,0xCC } }; // 90C1B5F0-0D3A-4AC6-ABB7-C97B367B8FCC
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderMessage>{ 0xEA4DC186,0x9E24,0x4B35,{ 0xA5,0xEF,0xA9,0xF5,0xDF,0x72,0xD6,0xAC } }; // EA4DC186-9E24-4B35-A5EF-A9F5DF72D6AC
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceProvider>{ 0xDCF328C0,0x012C,0x40F5,{ 0xBB,0x28,0x3A,0x1C,0x71,0x4D,0x02,0x7D } }; // DCF328C0-012C-40F5-BB28-3A1C714D027D
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest>{ 0x113D249F,0x82D9,0x57CB,{ 0x8C,0xEA,0x9A,0x52,0x91,0xF2,0xFE,0x22 } }; // 113D249F-82D9-57CB-8CEA-9A5291F2FE22
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs>{ 0x2BB30F4D,0x0166,0x58E3,{ 0xAA,0xF6,0x31,0xB2,0xAE,0x97,0x0B,0xCD } }; // 2BB30F4D-0166-58E3-AAF6-31B2AE970BCD
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse>{ 0x03A2D32C,0x2E9E,0x54A3,{ 0xB0,0x84,0x14,0x79,0xD5,0x06,0x0F,0x80 } }; // 03A2D32C-2E9E-54A3-B084-1479D5060F80
-    template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponseFactory>{ 0x08881EF1,0xA78A,0x5804,{ 0xB0,0x70,0x91,0x53,0xA8,0x65,0x7F,0x85 } }; // 08881EF1-A78A-5804-B070-9153A8657F85
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions>{ 0xB09CA8F7,0x7424,0x5687,{ 0xBA,0xAF,0x7D,0xD6,0xFA,0x63,0x96,0x72 } }; // B09CA8F7-7424-5687-BAAF-7DD6FA639672
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsFactory>{ 0xE0E00AF8,0x1D10,0x57A8,{ 0x94,0x19,0x3F,0x56,0x8E,0x85,0x4D,0xAA } }; // E0E00AF8-1D10-57A8-9419-3F568E854DAA
     template <> inline constexpr guid guid_v<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsStatics>{ 0x4645B5E3,0xD332,0x5D11,{ 0x82,0xF0,0x36,0x07,0xE5,0xDF,0x60,0x18 } }; // 4645B5E3-D332-5D11-82F0-3607E5DF6018
@@ -167,10 +114,6 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetErrorInfoReportedArgs>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetErrorInfoReportedArgs; };
     template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetInfo>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo; };
     template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetManager>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager; };
-    template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetMessageReceivedArgs>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs; };
-    template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequest>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest; };
-    template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequestedArgs>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs; };
-    template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceResponse>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse; };
     template <> struct default_interface<winrt::Microsoft::Windows::Widgets::Providers::WidgetUpdateRequestOptions>{ using type = winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions; };
     template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetActionInvokedArgs>
     {
@@ -245,26 +188,11 @@ namespace winrt::impl
             virtual int32_t __stdcall DeleteWidget(void*) noexcept = 0;
         };
     };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall SendMessageToContent(void*, void*) noexcept = 0;
-        };
-    };
     template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManagerStatics>
     {
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall GetDefault(void**) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall get_WidgetContext(void**) noexcept = 0;
-            virtual int32_t __stdcall get_Message(void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProvider>
@@ -298,60 +226,6 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall OnErrorInfoReported(void*) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderMessage>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall OnMessageReceived(void*) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceProvider>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall OnResourceRequested(void*) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall get_Uri(void**) noexcept = 0;
-            virtual int32_t __stdcall get_Method(void**) noexcept = 0;
-            virtual int32_t __stdcall put_Method(void*) noexcept = 0;
-            virtual int32_t __stdcall get_Content(void**) noexcept = 0;
-            virtual int32_t __stdcall put_Content(void*) noexcept = 0;
-            virtual int32_t __stdcall get_Headers(void**) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall get_WidgetContext(void**) noexcept = 0;
-            virtual int32_t __stdcall get_Request(void**) noexcept = 0;
-            virtual int32_t __stdcall get_Response(void**) noexcept = 0;
-            virtual int32_t __stdcall put_Response(void*) noexcept = 0;
-            virtual int32_t __stdcall GetDeferral(void**) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall get_Content(void**) noexcept = 0;
-            virtual int32_t __stdcall get_Headers(void**) noexcept = 0;
-            virtual int32_t __stdcall get_ReasonPhrase(void**) noexcept = 0;
-            virtual int32_t __stdcall get_StatusCode(int32_t*) noexcept = 0;
-        };
-    };
-    template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponseFactory>
-    {
-        struct __declspec(novtable) type : inspectable_abi
-        {
-            virtual int32_t __stdcall CreateInstance(void*, void*, int32_t, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions>
@@ -471,15 +345,6 @@ namespace winrt::impl
         template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetManager<D>;
     };
     template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetManager2
-    {
-        WINRT_IMPL_AUTO(void) SendMessageToContent(param::hstring const& widgetId, param::hstring const& message) const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetManager2<D>;
-    };
-    template <typename D>
     struct consume_Microsoft_Windows_Widgets_Providers_IWidgetManagerStatics
     {
         WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Widgets::Providers::WidgetManager) GetDefault() const;
@@ -487,16 +352,6 @@ namespace winrt::impl
     template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManagerStatics>
     {
         template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetManagerStatics<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetMessageReceivedArgs
-    {
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Widgets::Providers::WidgetContext) WidgetContext() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(hstring) Message() const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetMessageReceivedArgs>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetMessageReceivedArgs<D>;
     };
     template <typename D>
     struct consume_Microsoft_Windows_Widgets_Providers_IWidgetProvider
@@ -538,72 +393,6 @@ namespace winrt::impl
     template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderErrors>
     {
         template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetProviderErrors<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetProviderMessage
-    {
-        WINRT_IMPL_AUTO(void) OnMessageReceived(winrt::Microsoft::Windows::Widgets::Providers::WidgetMessageReceivedArgs const& args) const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetProviderMessage>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetProviderMessage<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceProvider
-    {
-        WINRT_IMPL_AUTO(void) OnResourceRequested(winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequestedArgs const& args) const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceProvider>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceProvider<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceRequest
-    {
-        [[nodiscard]] WINRT_IMPL_AUTO(hstring) Uri() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(hstring) Method() const;
-        WINRT_IMPL_AUTO(void) Method(param::hstring const& value) const;
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Storage::Streams::IRandomAccessStreamReference) Content() const;
-        WINRT_IMPL_AUTO(void) Content(winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& value) const;
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IMap<hstring, hstring>) Headers() const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequest>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceRequest<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceRequestedArgs
-    {
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Widgets::Providers::WidgetContext) WidgetContext() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceRequest) Request() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceResponse) Response() const;
-        WINRT_IMPL_AUTO(void) Response(winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceResponse const& value) const;
-        WINRT_IMPL_AUTO(winrt::Windows::Foundation::Deferral) GetDeferral() const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceRequestedArgs>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceRequestedArgs<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceResponse
-    {
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Storage::Streams::IRandomAccessStreamReference) Content() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IMap<hstring, hstring>) Headers() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(hstring) ReasonPhrase() const;
-        [[nodiscard]] WINRT_IMPL_AUTO(int32_t) StatusCode() const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceResponse<D>;
-    };
-    template <typename D>
-    struct consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceResponseFactory
-    {
-        WINRT_IMPL_AUTO(winrt::Microsoft::Windows::Widgets::Providers::WidgetResourceResponse) CreateInstance(winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& content, param::hstring const& reasonPhrase, int32_t statusCode) const;
-    };
-    template <> struct consume<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponseFactory>
-    {
-        template <typename D> using type = consume_Microsoft_Windows_Widgets_Providers_IWidgetResourceResponseFactory<D>;
     };
     template <typename D>
     struct consume_Microsoft_Windows_Widgets_Providers_IWidgetUpdateRequestOptions
