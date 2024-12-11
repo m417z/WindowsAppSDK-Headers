@@ -95,7 +95,17 @@ def index_nuget_package_version(package_url: str, dir: Path, package_deps: dict)
     if CPPWINRT_RUN and (lib_dir := dir / 'lib') and lib_dir.exists():
         print(f'  Running cppwinrt...')
 
-        cmd = [CPPWINRT_PATH, '-ref', '10.0.22621.0']
+        cppwinrt_dir = os.environ.get('CPPWINRT_DIR')
+        if cppwinrt_dir:
+            cppwinrt_exe = list(Path(cppwinrt_dir).glob('Microsoft.Windows.CppWinRT.*/bin/cppwinrt.exe'))
+            if len(cppwinrt_exe) != 1:
+                raise RuntimeError(f'Expected 1 cppwinrt.exe, found: {cppwinrt_exe}')
+
+            cppwinrt_path = cppwinrt_exe[0]
+        else:
+            cppwinrt_path = CPPWINRT_PATH
+
+        cmd = [cppwinrt_path, '-ref', '10.0.22621.0']
 
         for path in lib_dir.iterdir():
             if path.is_dir():

@@ -25,10 +25,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
+      - name: Install CppWinRT
+        run: |
+          nuget install Microsoft.Windows.CppWinRT -OutputDirectory "${{ runner.temp }}"
       - name: Set up Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
       - name: Run indexer
         run: python -u indexer.py
+        env:
+          CPPWINRT_DIR: ${{ runner.temp }}
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
