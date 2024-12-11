@@ -40,10 +40,12 @@ REMOVE_OLD_PACKAGES = True
 CPPWINRT_RUN = True
 
 # WINMDIDL_PATH = R'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\winmdidl.exe'
-WINMDIDL_PATH = R'winmdidl.exe'
+WINMDIDL_PATH = 'winmdidl.exe'
 
 # CPPWINRT_PATH = R'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\cppwinrt.exe'
-CPPWINRT_PATH = R'cppwinrt.exe'
+CPPWINRT_PATH = 'cppwinrt.exe'
+
+WINMETADATA_PATH = str(Path(__file__).parent / 'WinMetadata/10.0.26100.2605')
 
 
 def download_file(url: str, dir: Path):
@@ -105,22 +107,22 @@ def index_nuget_package_version(package_url: str, dir: Path, package_deps: dict)
         else:
             cppwinrt_path = CPPWINRT_PATH
 
-        cmd = [cppwinrt_path, '-ref', '10.0.22621.0']
+        cmd = [cppwinrt_path, '-input', WINMETADATA_PATH]
 
         for path in lib_dir.iterdir():
             if path.is_dir():
-                cmd += ['-in', str(path)]
+                cmd += ['-input', str(path)]
 
         for dep in package_deps.get('cppwinrt', []):
-            cmd += ['-in', dep]
+            cmd += ['-input', dep]
 
-        cmd += ['-in', 'local', '-out', str(lib_dir)]
+        cmd += ['-output', str(lib_dir)]
 
         subprocess.check_call(cmd)
 
     print(f'  Running winmdidl...')
 
-    cmd_start = [WINMDIDL_PATH, Rf'/metadata_dir:{os.environ["SystemRoot"]}\system32\WinMetadata']
+    cmd_start = [WINMDIDL_PATH, f'/metadata_dir:{WINMETADATA_PATH}']
     for dep in package_deps.get('winmdidl', []):
         cmd_start += [f'/metadata_dir:{dep}']
 
