@@ -298,12 +298,33 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
         IDynamicAnimatedVisualSource(std::nullptr_t = nullptr) noexcept {}
         IDynamicAnimatedVisualSource(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct WINRT_IMPL_EMPTY_BASES IElementFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IElementFactory>
+    {
+        IElementFactory(std::nullptr_t = nullptr) noexcept {}
+        IElementFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IElementFactoryFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IElementFactoryFactory>
+    {
+        IElementFactoryFactory(std::nullptr_t = nullptr) noexcept {}
+        IElementFactoryFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct WINRT_IMPL_EMPTY_BASES IElementFactoryGetArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IElementFactoryGetArgs>
     {
         IElementFactoryGetArgs(std::nullptr_t = nullptr) noexcept {}
         IElementFactoryGetArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IElementFactoryOverrides :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IElementFactoryOverrides>
+    {
+        IElementFactoryOverrides(std::nullptr_t = nullptr) noexcept {}
+        IElementFactoryOverrides(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct WINRT_IMPL_EMPTY_BASES IElementFactoryRecycleArgs :
         winrt::Windows::Foundation::IInspectable,

@@ -906,6 +906,12 @@ namespace winrt::impl
     {
         WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource)->remove_AnimatedVisualInvalidated(impl::bind_in(token));
     }
+    template <typename D> auto consume_Microsoft_UI_Xaml_Controls_IElementFactoryFactory<D>::CreateInstance(winrt::Windows::Foundation::IInspectable const& baseInterface, winrt::Windows::Foundation::IInspectable& innerInterface) const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory)->CreateInstance(*(void**)(&baseInterface), impl::bind_out(innerInterface), &value));
+        return winrt::Microsoft::UI::Xaml::Controls::ElementFactory{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Microsoft_UI_Xaml_Controls_IElementFactoryGetArgs<D>::Data() const
     {
         void* value{};
@@ -925,6 +931,16 @@ namespace winrt::impl
     template <typename D> auto consume_Microsoft_UI_Xaml_Controls_IElementFactoryGetArgs<D>::Parent(winrt::Windows::UI::Xaml::UIElement const& value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs)->put_Parent(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Microsoft_UI_Xaml_Controls_IElementFactoryOverrides<D>::GetElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs const& args) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides)->GetElementCore(*(void**)(&args), &result));
+        return winrt::Windows::UI::Xaml::UIElement{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Microsoft_UI_Xaml_Controls_IElementFactoryOverrides<D>::RecycleElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs const& args) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides)->RecycleElementCore(*(void**)(&args)));
     }
     template <typename D> auto consume_Microsoft_UI_Xaml_Controls_IElementFactoryRecycleArgs<D>::Element() const
     {
@@ -9479,6 +9495,29 @@ namespace winrt::impl
     };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactory> : produce_base<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactory>
+    {
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory> : produce_base<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory>
+    {
+        int32_t __stdcall CreateInstance(void* baseInterface, void** innerInterface, void** value) noexcept final try
+        {
+            if (innerInterface) *innerInterface = nullptr;
+            winrt::Windows::Foundation::IInspectable winrt_impl_innerInterface;
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Microsoft::UI::Xaml::Controls::ElementFactory>(this->shim().CreateInstance(*reinterpret_cast<winrt::Windows::Foundation::IInspectable const*>(&baseInterface), winrt_impl_innerInterface));
+                if (innerInterface) *innerInterface = detach_abi(winrt_impl_innerInterface);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs> : produce_base<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs>
     {
         int32_t __stdcall get_Data(void** value) noexcept final try
@@ -9513,6 +9552,25 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+    template <typename D>
+    struct produce<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides> : produce_base<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>
+    {
+        int32_t __stdcall GetElementCore(void* args, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::UI::Xaml::UIElement>(this->shim().GetElementCore(*reinterpret_cast<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs const*>(&args)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RecycleElementCore(void* args) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecycleElementCore(*reinterpret_cast<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs const*>(&args));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs> : produce_base<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs>
@@ -20698,6 +20756,29 @@ namespace winrt::impl
     };
 #endif
 template <typename T, typename D>
+struct WINRT_IMPL_EMPTY_BASES produce_dispatch_to_overridable<T, D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>
+    : produce_dispatch_to_overridable_base<T, D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>
+{
+    auto GetElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs const& args)
+    {
+        if (auto overridable = this->shim_overridable())
+        {
+            return overridable.GetElementCore(args);
+        }
+
+        return this->shim().GetElementCore(args);
+    }
+    auto RecycleElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs const& args)
+    {
+        if (auto overridable = this->shim_overridable())
+        {
+            return overridable.RecycleElementCore(args);
+        }
+
+        return this->shim().RecycleElementCore(args);
+    }
+};
+template <typename T, typename D>
 struct WINRT_IMPL_EMPTY_BASES produce_dispatch_to_overridable<T, D, winrt::Microsoft::UI::Xaml::Controls::ILayoutContextOverrides>
     : produce_dispatch_to_overridable_base<T, D, winrt::Microsoft::UI::Xaml::Controls::ILayoutContextOverrides>
 {
@@ -21164,6 +21245,11 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
     {
         winrt::Windows::Foundation::IInspectable baseInterface, innerInterface;
         *this = impl::call_factory<DropDownButton, IDropDownButtonFactory>([&](IDropDownButtonFactory const& f) { return f.CreateInstance(baseInterface, innerInterface); });
+    }
+    inline ElementFactory::ElementFactory()
+    {
+        winrt::Windows::Foundation::IInspectable baseInterface, innerInterface;
+        *this = impl::call_factory<ElementFactory, IElementFactoryFactory>([&](IElementFactoryFactory const& f) { return f.CreateInstance(baseInterface, innerInterface); });
     }
     inline ElementFactoryGetArgs::ElementFactoryGetArgs() :
         ElementFactoryGetArgs(impl::call_factory_cast<ElementFactoryGetArgs(*)(winrt::Windows::Foundation::IActivationFactory const&), ElementFactoryGetArgs>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<ElementFactoryGetArgs>(); }))
@@ -22760,6 +22846,14 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
     {
         return impl::call_factory_cast<winrt::Windows::UI::Xaml::DependencyProperty(*)(IXamlControlsResourcesStatics3 const&), XamlControlsResources, IXamlControlsResourcesStatics3>([](IXamlControlsResourcesStatics3 const& f) { return f.ControlsResourcesVersionProperty(); });
     }
+    template <typename D> auto IElementFactoryOverridesT<D>::GetElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs const& args) const
+    {
+        return shim().template try_as<IElementFactoryOverrides>().GetElementCore(args);
+    }
+    template <typename D> auto IElementFactoryOverridesT<D>::RecycleElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs const& args) const
+    {
+        return shim().template try_as<IElementFactoryOverrides>().RecycleElementCore(args);
+    }
     template <typename D> auto ILayoutContextOverridesT<D>::LayoutStateCore() const
     {
         return shim().template try_as<ILayoutContextOverrides>().LayoutStateCore();
@@ -22990,6 +23084,20 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
         DropDownButtonT()
         {
             impl::call_factory<DropDownButton, IDropDownButtonFactory>([&](IDropDownButtonFactory const& f) { [[maybe_unused]] auto winrt_impl_discarded = f.CreateInstance(*this, this->m_inner); });
+        }
+    };
+    template <typename D, typename... Interfaces>
+    struct ElementFactoryT :
+        implements<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides, composing, Interfaces...>,
+        impl::require<D, winrt::Microsoft::UI::Xaml::Controls::IElementFactory, winrt::Windows::UI::Xaml::IDependencyObject, winrt::Windows::UI::Xaml::IDependencyObject2>,
+        impl::base<D, ElementFactory, winrt::Windows::UI::Xaml::DependencyObject>,
+        winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverridesT<D>
+    {
+        using composable = ElementFactory;
+    protected:
+        ElementFactoryT()
+        {
+            impl::call_factory<ElementFactory, IElementFactoryFactory>([&](IElementFactoryFactory const& f) { [[maybe_unused]] auto winrt_impl_discarded = f.CreateInstance(*this, this->m_inner); });
         }
     };
     template <typename D, typename... Interfaces>
@@ -24025,7 +24133,10 @@ namespace std
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IDropDownButton> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IDropDownButtonFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IElementFactory> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IExpander> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::IExpanderCollapsedEventArgs> : winrt::impl::hash_base {};
@@ -24288,6 +24399,7 @@ namespace std
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::CommandBarFlyout> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::DropDownButton> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::ElementFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::UI::Xaml::Controls::Expander> : winrt::impl::hash_base {};

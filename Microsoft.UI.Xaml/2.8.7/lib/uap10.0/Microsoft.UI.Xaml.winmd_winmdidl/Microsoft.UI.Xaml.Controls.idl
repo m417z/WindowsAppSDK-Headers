@@ -525,7 +525,13 @@ namespace Microsoft
 
                 interface IDynamicAnimatedVisualSource;
 
+                interface IElementFactory;
+
+                interface IElementFactoryFactory;
+
                 interface IElementFactoryGetArgs;
+
+                interface IElementFactoryOverrides;
 
                 interface IElementFactoryRecycleArgs;
 
@@ -1050,6 +1056,8 @@ namespace Microsoft
                 runtimeclass CoreWebView2InitializedEventArgs;
 
                 runtimeclass DropDownButton;
+
+                runtimeclass ElementFactory;
 
                 runtimeclass ElementFactoryGetArgs;
 
@@ -2169,6 +2177,21 @@ namespace Microsoft
                 }
 
                 [contract(Microsoft.UI.Xaml.XamlContract, 1.0)]
+                [exclusiveto(Microsoft.UI.Xaml.Controls.ElementFactory)]
+                [uuid(122278A6-3E28-5644-BE8E-1052E3AE4EC9)]
+                interface IElementFactory : IInspectable
+                {
+                }
+
+                [contract(Microsoft.UI.Xaml.XamlContract, 1.0)]
+                [exclusiveto(Microsoft.UI.Xaml.Controls.ElementFactory)]
+                [uuid(D892556F-A875-534F-8D7F-681803342732)]
+                interface IElementFactoryFactory : IInspectable
+                {
+                    HRESULT CreateInstance([in] IInspectable* baseInterface, [out] IInspectable** innerInterface, [out] [retval] Microsoft.UI.Xaml.Controls.ElementFactory** value);
+                }
+
+                [contract(Microsoft.UI.Xaml.XamlContract, 1.0)]
                 [exclusiveto(Microsoft.UI.Xaml.Controls.ElementFactoryGetArgs)]
                 [uuid(909791CE-213D-5075-A23C-BFE46C16B34D)]
                 interface IElementFactoryGetArgs : IInspectable
@@ -2177,6 +2200,15 @@ namespace Microsoft
                     [propput] HRESULT Data([in] IInspectable* value);
                     [propget] HRESULT Parent([out] [retval] Windows.UI.Xaml.UIElement** value);
                     [propput] HRESULT Parent([in] Windows.UI.Xaml.UIElement* value);
+                }
+
+                [contract(Microsoft.UI.Xaml.XamlContract, 1.0)]
+                [exclusiveto(Microsoft.UI.Xaml.Controls.ElementFactory)]
+                [uuid(BDDC3E33-DA7D-5F43-8D07-75FB5006CF5D)]
+                interface IElementFactoryOverrides : IInspectable
+                {
+                    HRESULT GetElementCore([in] Microsoft.UI.Xaml.Controls.ElementFactoryGetArgs* args, [out] [retval] Windows.UI.Xaml.UIElement** result);
+                    HRESULT RecycleElementCore([in] Microsoft.UI.Xaml.Controls.ElementFactoryRecycleArgs* args);
                 }
 
                 [contract(Microsoft.UI.Xaml.XamlContract, 1.0)]
@@ -5312,6 +5344,16 @@ namespace Microsoft
                 runtimeclass DropDownButton : Windows.UI.Xaml.Controls.Button
                 {
                     [default] interface Microsoft.UI.Xaml.Controls.IDropDownButton;
+                }
+
+                [composable(Microsoft.UI.Xaml.Controls.IElementFactoryFactory, public, Microsoft.UI.Xaml.XamlContract, 1.0)]
+                [contract(Microsoft.UI.Xaml.XamlContract, 1.0)]
+                [marshaling_behavior(agile)]
+                [threading(both)]
+                runtimeclass ElementFactory : Windows.UI.Xaml.DependencyObject
+                {
+                    [default] interface Microsoft.UI.Xaml.Controls.IElementFactory;
+                    [overridable] interface Microsoft.UI.Xaml.Controls.IElementFactoryOverrides;
                 }
 
                 [activatable(Microsoft.UI.Xaml.XamlContract, 1.0)]

@@ -155,6 +155,14 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
         DropDownButton(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::UI::Xaml::Controls::IDropDownButton(ptr, take_ownership_from_abi) {}
         DropDownButton();
     };
+    struct WINRT_IMPL_EMPTY_BASES ElementFactory : winrt::Microsoft::UI::Xaml::Controls::IElementFactory,
+        impl::base<ElementFactory, winrt::Windows::UI::Xaml::DependencyObject>,
+        impl::require<ElementFactory, winrt::Windows::UI::Xaml::IDependencyObject, winrt::Windows::UI::Xaml::IDependencyObject2>
+    {
+        ElementFactory(std::nullptr_t) noexcept {}
+        ElementFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::UI::Xaml::Controls::IElementFactory(ptr, take_ownership_from_abi) {}
+        ElementFactory();
+    };
     struct WINRT_IMPL_EMPTY_BASES ElementFactoryGetArgs : winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs
     {
         ElementFactoryGetArgs(std::nullptr_t) noexcept {}
@@ -1212,6 +1220,16 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
         XamlControlsResources();
         static auto EnsureRevealLights(winrt::Windows::UI::Xaml::UIElement const& element);
         [[nodiscard]] static auto ControlsResourcesVersionProperty();
+    };
+    template <typename D>
+    class IElementFactoryOverridesT
+    {
+        D& shim() noexcept { return *static_cast<D*>(this); }
+        D const& shim() const noexcept { return *static_cast<const D*>(this); }
+    public:
+        using IElementFactoryOverrides = winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides;
+        auto GetElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs const& args) const;
+        auto RecycleElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs const& args) const;
     };
     template <typename D>
     class ILayoutContextOverridesT

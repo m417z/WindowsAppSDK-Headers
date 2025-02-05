@@ -395,7 +395,10 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
     struct IDropDownButton;
     struct IDropDownButtonFactory;
     struct IDynamicAnimatedVisualSource;
+    struct IElementFactory;
+    struct IElementFactoryFactory;
     struct IElementFactoryGetArgs;
+    struct IElementFactoryOverrides;
     struct IElementFactoryRecycleArgs;
     struct IExpander;
     struct IExpanderCollapsedEventArgs;
@@ -658,6 +661,7 @@ WINRT_EXPORT namespace winrt::Microsoft::UI::Xaml::Controls
     struct CommandBarFlyout;
     struct CoreWebView2InitializedEventArgs;
     struct DropDownButton;
+    struct ElementFactory;
     struct ElementFactoryGetArgs;
     struct ElementFactoryRecycleArgs;
     struct Expander;
@@ -807,7 +811,10 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IDropDownButton>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IDropDownButtonFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IElementFactory>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IExpander>{ using type = interface_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::IExpanderCollapsedEventArgs>{ using type = interface_category; };
@@ -1070,6 +1077,7 @@ namespace winrt::impl
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::CommandBarFlyout>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::DropDownButton>{ using type = class_category; };
+    template <> struct category<winrt::Microsoft::UI::Xaml::Controls::ElementFactory>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs>{ using type = class_category; };
     template <> struct category<winrt::Microsoft::UI::Xaml::Controls::Expander>{ using type = class_category; };
@@ -1225,6 +1233,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::CommandBarFlyout> = L"Microsoft.UI.Xaml.Controls.CommandBarFlyout";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs> = L"Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::DropDownButton> = L"Microsoft.UI.Xaml.Controls.DropDownButton";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::ElementFactory> = L"Microsoft.UI.Xaml.Controls.ElementFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs> = L"Microsoft.UI.Xaml.Controls.ElementFactoryGetArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs> = L"Microsoft.UI.Xaml.Controls.ElementFactoryRecycleArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::Expander> = L"Microsoft.UI.Xaml.Controls.Expander";
@@ -1408,7 +1417,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IDropDownButton> = L"Microsoft.UI.Xaml.Controls.IDropDownButton";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IDropDownButtonFactory> = L"Microsoft.UI.Xaml.Controls.IDropDownButtonFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource> = L"Microsoft.UI.Xaml.Controls.IDynamicAnimatedVisualSource";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactory> = L"Microsoft.UI.Xaml.Controls.IElementFactory";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory> = L"Microsoft.UI.Xaml.Controls.IElementFactoryFactory";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs> = L"Microsoft.UI.Xaml.Controls.IElementFactoryGetArgs";
+    template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides> = L"Microsoft.UI.Xaml.Controls.IElementFactoryOverrides";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs> = L"Microsoft.UI.Xaml.Controls.IElementFactoryRecycleArgs";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IExpander> = L"Microsoft.UI.Xaml.Controls.IExpander";
     template <> inline constexpr auto& name_v<winrt::Microsoft::UI::Xaml::Controls::IExpanderCollapsedEventArgs> = L"Microsoft.UI.Xaml.Controls.IExpanderCollapsedEventArgs";
@@ -1699,7 +1711,10 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IDropDownButton>{ 0xC1E9FA91,0x4F95,0x5796,{ 0x8A,0x7B,0x3B,0x75,0x94,0xA1,0x2C,0x69 } }; // C1E9FA91-4F95-5796-8A7B-3B7594A12C69
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IDropDownButtonFactory>{ 0x7CF3E13B,0x668D,0x57E7,{ 0xB5,0xD6,0xF5,0xCA,0x3D,0xBC,0x80,0xBD } }; // 7CF3E13B-668D-57E7-B5D6-F5CA3DBC80BD
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource>{ 0xAB00E5CF,0x1BE6,0x559C,{ 0xAD,0x5B,0x02,0x53,0xBB,0x17,0xC0,0xF7 } }; // AB00E5CF-1BE6-559C-AD5B-0253BB17C0F7
+    template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactory>{ 0x122278A6,0x3E28,0x5644,{ 0xBE,0x8E,0x10,0x52,0xE3,0xAE,0x4E,0xC9 } }; // 122278A6-3E28-5644-BE8E-1052E3AE4EC9
+    template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory>{ 0xD892556F,0xA875,0x534F,{ 0x8D,0x7F,0x68,0x18,0x03,0x34,0x27,0x32 } }; // D892556F-A875-534F-8D7F-681803342732
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs>{ 0x909791CE,0x213D,0x5075,{ 0xA2,0x3C,0xBF,0xE4,0x6C,0x16,0xB3,0x4D } }; // 909791CE-213D-5075-A23C-BFE46C16B34D
+    template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>{ 0xBDDC3E33,0xDA7D,0x5F43,{ 0x8D,0x07,0x75,0xFB,0x50,0x06,0xCF,0x5D } }; // BDDC3E33-DA7D-5F43-8D07-75FB5006CF5D
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs>{ 0xC7386123,0x7139,0x509C,{ 0x88,0x6B,0x9D,0x74,0xCB,0xA9,0x56,0xDE } }; // C7386123-7139-509C-886B-9D74CBA956DE
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IExpander>{ 0xCD1D4EDE,0x8D39,0x5BEF,{ 0xA7,0x35,0x9F,0xDF,0x60,0x38,0xE8,0x6B } }; // CD1D4EDE-8D39-5BEF-A735-9FDF6038E86B
     template <> inline constexpr guid guid_v<winrt::Microsoft::UI::Xaml::Controls::IExpanderCollapsedEventArgs>{ 0x968A6870,0x7426,0x535E,{ 0xA5,0x26,0x27,0x9E,0x6E,0xED,0xEC,0xD0 } }; // 968A6870-7426-535E-A526-279E6EEDECD0
@@ -1962,6 +1977,7 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::CommandBarFlyout>{ using type = winrt::Microsoft::UI::Xaml::Controls::ICommandBarFlyout; };
     template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs>{ using type = winrt::Microsoft::UI::Xaml::Controls::ICoreWebView2InitializedEventArgs; };
     template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::DropDownButton>{ using type = winrt::Microsoft::UI::Xaml::Controls::IDropDownButton; };
+    template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::ElementFactory>{ using type = winrt::Microsoft::UI::Xaml::Controls::IElementFactory; };
     template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs>{ using type = winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs; };
     template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs>{ using type = winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs; };
     template <> struct default_interface<winrt::Microsoft::UI::Xaml::Controls::Expander>{ using type = winrt::Microsoft::UI::Xaml::Controls::IExpander; };
@@ -2474,6 +2490,19 @@ namespace winrt::impl
             virtual int32_t __stdcall remove_AnimatedVisualInvalidated(winrt::event_token) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Microsoft::UI::Xaml::Controls::IElementFactory>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+        };
+    };
+    template <> struct abi<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateInstance(void*, void**, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs>
     {
         struct WINRT_IMPL_NOVTABLE type : inspectable_abi
@@ -2482,6 +2511,14 @@ namespace winrt::impl
             virtual int32_t __stdcall put_Data(void*) noexcept = 0;
             virtual int32_t __stdcall get_Parent(void**) noexcept = 0;
             virtual int32_t __stdcall put_Parent(void*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetElementCore(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall RecycleElementCore(void*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryRecycleArgs>
@@ -5744,6 +5781,23 @@ namespace winrt::impl
         template <typename D> using type = consume_Microsoft_UI_Xaml_Controls_IDynamicAnimatedVisualSource<D>;
     };
     template <typename D>
+    struct consume_Microsoft_UI_Xaml_Controls_IElementFactory
+    {
+    };
+    template <> struct consume<winrt::Microsoft::UI::Xaml::Controls::IElementFactory>
+    {
+        template <typename D> using type = consume_Microsoft_UI_Xaml_Controls_IElementFactory<D>;
+    };
+    template <typename D>
+    struct consume_Microsoft_UI_Xaml_Controls_IElementFactoryFactory
+    {
+        auto CreateInstance(winrt::Windows::Foundation::IInspectable const& baseInterface, winrt::Windows::Foundation::IInspectable& innerInterface) const;
+    };
+    template <> struct consume<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryFactory>
+    {
+        template <typename D> using type = consume_Microsoft_UI_Xaml_Controls_IElementFactoryFactory<D>;
+    };
+    template <typename D>
     struct consume_Microsoft_UI_Xaml_Controls_IElementFactoryGetArgs
     {
         [[nodiscard]] auto Data() const;
@@ -5754,6 +5808,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryGetArgs>
     {
         template <typename D> using type = consume_Microsoft_UI_Xaml_Controls_IElementFactoryGetArgs<D>;
+    };
+    template <typename D>
+    struct consume_Microsoft_UI_Xaml_Controls_IElementFactoryOverrides
+    {
+        auto GetElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryGetArgs const& args) const;
+        auto RecycleElementCore(winrt::Microsoft::UI::Xaml::Controls::ElementFactoryRecycleArgs const& args) const;
+    };
+    template <> struct consume<winrt::Microsoft::UI::Xaml::Controls::IElementFactoryOverrides>
+    {
+        template <typename D> using type = consume_Microsoft_UI_Xaml_Controls_IElementFactoryOverrides<D>;
     };
     template <typename D>
     struct consume_Microsoft_UI_Xaml_Controls_IElementFactoryRecycleArgs
