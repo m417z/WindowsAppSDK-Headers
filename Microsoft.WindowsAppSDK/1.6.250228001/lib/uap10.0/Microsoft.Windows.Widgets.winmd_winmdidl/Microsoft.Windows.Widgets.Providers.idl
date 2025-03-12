@@ -64,6 +64,8 @@ namespace Microsoft
 
                 interface IWidgetInfo;
 
+                interface IWidgetInfo2;
+
                 interface IWidgetManager;
 
                 interface IWidgetManager2;
@@ -93,6 +95,8 @@ namespace Microsoft
                 interface IWidgetResourceResponseFactory;
 
                 interface IWidgetUpdateRequestOptions;
+
+                interface IWidgetUpdateRequestOptions2;
 
                 interface IWidgetUpdateRequestOptionsFactory;
 
@@ -206,6 +210,14 @@ namespace Microsoft
                     [propget] HRESULT Data([out] [retval] HSTRING* value);
                     [propget] HRESULT CustomState([out] [retval] HSTRING* value);
                     [propget] HRESULT LastUpdateTime([out] [retval] Windows.Foundation.DateTime* value);
+                }
+
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 9.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetInfo)]
+                [uuid(081B0A6F-D784-5408-BB29-252FEF2926D4)]
+                interface IWidgetInfo2 : IInspectable
+                {
+                    [propget] HRESULT IsPlaceholderContent([out] [retval] boolean* value);
                 }
 
                 [contract(Microsoft.Windows.Widgets.WidgetContract, 1.0)]
@@ -348,6 +360,15 @@ namespace Microsoft
                     [propput] HRESULT CustomState([in] HSTRING value);
                 }
 
+                [contract(Microsoft.Windows.Widgets.WidgetContract, 9.0)]
+                [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetUpdateRequestOptions)]
+                [uuid(77C4EFC4-38F3-57A5-ABA1-F83F257B899E)]
+                interface IWidgetUpdateRequestOptions2 : IInspectable
+                {
+                    [propget] HRESULT IsPlaceholderContent([out] [retval] Windows.Foundation.IReference<boolean>** value);
+                    [propput] HRESULT IsPlaceholderContent([in] Windows.Foundation.IReference<boolean>* value);
+                }
+
                 [contract(Microsoft.Windows.Widgets.WidgetContract, 1.0)]
                 [exclusiveto(Microsoft.Windows.Widgets.Providers.WidgetUpdateRequestOptions)]
                 [uuid(E0E00AF8-1D10-57A8-9419-3F568E854DAA)]
@@ -411,6 +432,7 @@ namespace Microsoft
                 runtimeclass WidgetInfo
                 {
                     [default] interface Microsoft.Windows.Widgets.Providers.IWidgetInfo;
+                    [contract(Microsoft.Windows.Widgets.WidgetContract, 9.0)] interface Microsoft.Windows.Widgets.Providers.IWidgetInfo2;
                 }
 
                 [contract(Microsoft.Windows.Widgets.WidgetContract, 1.0)]
@@ -461,6 +483,7 @@ namespace Microsoft
                 runtimeclass WidgetUpdateRequestOptions
                 {
                     [default] interface Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptions;
+                    [contract(Microsoft.Windows.Widgets.WidgetContract, 9.0)] interface Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptions2;
                 }
             }
         }

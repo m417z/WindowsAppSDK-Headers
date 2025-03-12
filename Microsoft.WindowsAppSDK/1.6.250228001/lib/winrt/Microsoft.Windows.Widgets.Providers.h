@@ -134,6 +134,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo)->get_LastUpdateTime(put_abi(value)));
         return value;
     }
+    template <typename D> auto consume_Microsoft_Windows_Widgets_Providers_IWidgetInfo2<D>::IsPlaceholderContent() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo2)->get_IsPlaceholderContent(&value));
+        return value;
+    }
     template <typename D> auto consume_Microsoft_Windows_Widgets_Providers_IWidgetManager<D>::UpdateWidget(winrt::Microsoft::Windows::Widgets::Providers::WidgetUpdateRequestOptions const& widgetUpdateRequestOptions) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager)->UpdateWidget(*(void**)(&widgetUpdateRequestOptions)));
@@ -354,6 +360,16 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions)->put_CustomState(*(void**)(&value)));
     }
+    template <typename D> auto consume_Microsoft_Windows_Widgets_Providers_IWidgetUpdateRequestOptions2<D>::IsPlaceholderContent() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions2)->get_IsPlaceholderContent(&value));
+        return winrt::Windows::Foundation::IReference<bool>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Microsoft_Windows_Widgets_Providers_IWidgetUpdateRequestOptions2<D>::IsPlaceholderContent(winrt::Windows::Foundation::IReference<bool> const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions2)->put_IsPlaceholderContent(*(void**)(&value)));
+    }
     template <typename D> auto consume_Microsoft_Windows_Widgets_Providers_IWidgetUpdateRequestOptionsFactory<D>::CreateInstance(param::hstring const& widgetId) const
     {
         void* value{};
@@ -561,6 +577,19 @@ namespace winrt::impl
             zero_abi<winrt::Windows::Foundation::DateTime>(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Foundation::DateTime>(this->shim().LastUpdateTime());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo2> : produce_base<D, winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo2>
+    {
+        int32_t __stdcall get_IsPlaceholderContent(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsPlaceholderContent());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -965,6 +994,27 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions2> : produce_base<D, winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions2>
+    {
+        int32_t __stdcall get_IsPlaceholderContent(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<bool>>(this->shim().IsPlaceholderContent());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsPlaceholderContent(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsPlaceholderContent(*reinterpret_cast<winrt::Windows::Foundation::IReference<bool> const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsFactory> : produce_base<D, winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsFactory>
     {
         int32_t __stdcall CreateInstance(void* widgetId, void** value) noexcept final try
@@ -1021,6 +1071,7 @@ namespace std
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetCustomizationRequestedArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetErrorInfoReportedArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManager2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetManagerStatics> : winrt::impl::hash_base {};
@@ -1036,6 +1087,7 @@ namespace std
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponseFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptionsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Microsoft::Windows::Widgets::Providers::WidgetActionInvokedArgs> : winrt::impl::hash_base {};

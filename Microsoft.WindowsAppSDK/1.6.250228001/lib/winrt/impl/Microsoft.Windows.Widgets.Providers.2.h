@@ -37,7 +37,8 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
         WidgetErrorInfoReportedArgs(std::nullptr_t) noexcept {}
         WidgetErrorInfoReportedArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetErrorInfoReportedArgs(ptr, take_ownership_from_abi) {}
     };
-    struct WINRT_IMPL_EMPTY_BASES WidgetInfo : winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo
+    struct WINRT_IMPL_EMPTY_BASES WidgetInfo : winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo,
+        impl::require<WidgetInfo, winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo2>
     {
         WidgetInfo(std::nullptr_t) noexcept {}
         WidgetInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetInfo(ptr, take_ownership_from_abi) {}
@@ -70,7 +71,8 @@ WINRT_EXPORT namespace winrt::Microsoft::Windows::Widgets::Providers
         WidgetResourceResponse(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetResourceResponse(ptr, take_ownership_from_abi) {}
         WidgetResourceResponse(winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& content, param::hstring const& reasonPhrase, int32_t statusCode);
     };
-    struct WINRT_IMPL_EMPTY_BASES WidgetUpdateRequestOptions : winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions
+    struct WINRT_IMPL_EMPTY_BASES WidgetUpdateRequestOptions : winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions,
+        impl::require<WidgetUpdateRequestOptions, winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions2>
     {
         WidgetUpdateRequestOptions(std::nullptr_t) noexcept {}
         WidgetUpdateRequestOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Microsoft::Windows::Widgets::Providers::IWidgetUpdateRequestOptions(ptr, take_ownership_from_abi) {}
