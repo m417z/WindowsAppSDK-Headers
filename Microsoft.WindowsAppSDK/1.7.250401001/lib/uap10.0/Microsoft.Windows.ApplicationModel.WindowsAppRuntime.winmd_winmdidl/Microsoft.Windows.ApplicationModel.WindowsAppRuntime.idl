@@ -131,7 +131,15 @@ namespace Microsoft
                 [contract(Microsoft.Windows.ApplicationModel.WindowsAppRuntime.RuntimeCompatibilityContract, 1.0)]
                 enum RuntimeCompatibilityChange
                 {
-                    None = 0
+                    None                                  = 0,
+                    EnsurePackageReadyVersionSupercedence = 56439870,
+                    FixPopupClosingReentrancyCrash        = 56870998,
+                    FixPopupUnloadingCrash                = 56686624,
+                    FixRandomUIFreezeInDispatcher         = 56545444,
+                    FixSetProgressBarIndicatorWidthCrash  = 56779522,
+                    FixStuckPointerInputQueue             = 56620717,
+                    FixWebViewVisibilityReentrancyCrash   = 56852985,
+                    FixWindowCloseFocusCrash              = 56873234
                 };
 
                 [contract(Microsoft.Windows.ApplicationModel.WindowsAppRuntime.RuntimeCompatibilityContract, 1.0)]
