@@ -5,8 +5,8 @@ from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("winui2_dir", type=Path)
-    parser.add_argument("winui3_dir", type=Path)
+    parser.add_argument("winui2_dir", type=Path, help="Path to WinUI2 includes, e.g. Microsoft.UI.Xaml\\2.8.6\\lib\\winrt")
+    parser.add_argument("winui3_dir", type=Path, help="Path to WinUI3 includes, e.g. Microsoft.WindowsAppSDK\\1.6.241114003\\lib\\winrt")
     parser.add_argument("output_dir", type=Path)
     args = parser.parse_args()
 
