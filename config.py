@@ -16,6 +16,9 @@ REMOVE_OLD_PACKAGES = True
 # to 8.5GB). It can be run locally if needed.
 CPPWINRT_RUN = True
 
+# .winmd files of deps are necessary for cppwinrt.
+WINMD_FILES_KEEP = True
+
 # WINMDIDL_PATH = R'C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\winmdidl.exe'
 WINMDIDL_PATH = 'winmdidl.exe'
 
