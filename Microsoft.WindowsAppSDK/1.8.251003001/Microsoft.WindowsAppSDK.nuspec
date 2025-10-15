@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>Microsoft.WindowsAppSDK</id>
-    <version>1.8.250916003</version>
+    <version>1.8.251003001</version>
     <title>Microsoft Windows App SDK</title>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
@@ -23,8 +23,8 @@
       <dependency id="Microsoft.WindowsAppSDK.DWrite" version="[1.8.25090401]" />
       <dependency id="Microsoft.WindowsAppSDK.Widgets" version="[1.8.250904007]" />
       <dependency id="Microsoft.WindowsAppSDK.AI" version="[1.8.38]" />
-      <dependency id="Microsoft.WindowsAppSDK.ML" version="[1.8.2091]" />
-      <dependency id="Microsoft.WindowsAppSDK.Runtime" version="[1.8.250916003]" />
+      <dependency id="Microsoft.WindowsAppSDK.ML" version="[1.8.2095]" />
+      <dependency id="Microsoft.WindowsAppSDK.Runtime" version="[1.8.251003001]" />
     </dependencies>
   </metadata>
 </package>
